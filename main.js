@@ -10,7 +10,18 @@ const companies = [
   { name: "Company Nine", category: "Retail", start: 1981, end: 1989 }
 ];
 
-const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+var ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+
+// const games = [
+//   { type: football, places: [{ name: 'Powderhorn', address: '3500 11th', time: '2019 18:10:35 GMT-0500' }], team: 'pewee' }
+//   { type: football, places: [{ name: 'Kenny', address: '5700 fremont', time: '2019 11:10:35 GMT-0500' }], team: 'Varsity' }
+//   { type: football, places: [{ name: 'Armitage', address: '5000 Girard', time: '2019 09:10:35 GMT-0500' }], team: 'Jr Varsity' }
+//   { type: football, places: [{ name: 'Serward', address: '2700 26th', time: '2019 18:10:35 GMT-0500' }], team: 'Varsity' }
+//   { type: football, places: [{ name: 'Powderhorn', address: '3500', time: '2019 18:10:35 GMT-0500' }], team: 'pewee' }
+//   { type: football, places: [{ name: 'Powderhorn', address: '3500', time: '2019 18:10:35 GMT-0500' }], team: 'Jr Varsity' }
+//   { type: football, places: [{ name: 'Powderhorn', address: '3500', time: '2019 18:10:35 GMT-0500' }], team: 'Varsity' }
+//   { type: football, places: [{ name: 'Powderhorn', address: '3500', time: '2019 18:10:35 GMT-0500' }], team: 'pewee' }
+// ]
 
 // for (let i = 0; i < companies.length; i++) {
 //   console.log(companies[i]);
@@ -23,7 +34,7 @@ const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 // });
 
 // companies.forEach(company => console.log(company));
-
+// ages.forEach(age => console.log(age));
 // filter
 
 // let canDrink = [];
@@ -99,6 +110,13 @@ const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 
 // console.log(companyNames);
 
+// { name: "Company One", category: "Finance", start: 1981, end: 2003 },
+// const companiesCategories = companies.map(
+//   company => `${company.category} [${company.start} - ${company.end}]`
+// );
+
+// console.log(companiesCategories);
+
 // const agesSqrt = ages.map(age => Math.sqrt(age));
 // const agesTimesTwo = ages.map(age => age * 2);
 // console.log(agesSqrt);
@@ -122,10 +140,10 @@ const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 
 // console.log(sortedCompanies);
 
-const sortAges = ages.sort((a, b) => a - b);
+// const sortAges = ages.sort((a, b) => a - b);
 // const sortAges = ages.sort((a, b) => b - a);
 
-console.log(sortAges);
+// console.log(sortAges);
 
 // reduce
 
@@ -139,25 +157,175 @@ console.log(sortAges);
 //   return total + age;
 // }, 0);
 
-const ageSum = ages.reduce((total, age) => total + age, 0);
+// const ageSum = ages.reduce((total, age) => total + age, 0);
 
-console.log(ageSum);
+// console.log(ageSum);
 
 // const totalYears = companies.reduce(function(total, company) {
 //   return total + (company.end - company.start);
 // }, 0);
 
-const totalYears = companies.reduce(
-  (total, company) => total + (company.end - company.start),
-  0
-);
+// const totalYears = companies.reduce(
+//   (total, company) => total + (company.end - company.start),
+//   0
+// );
 
-console.log(totalYears);
+// console.log(totalYears);
 
-const combine = ages
-  .map(age => age * 2)
-  .filter(age => age >= 40)
-  .sort((a, b) => a - b)
-  .reduce((a, b) => a + b, 0);
+// const combine = ages
+//   .map(age => age * 2)
+//   .filter(age => age >= 40)
+//   .sort((a, b) => a - b)
+//   .reduce((a, b) => a + b, 0);
 
-console.log(combine);
+// console.log(combine);
+
+// ages.push("end");
+// ages.unshift("start");
+
+// 6 months ago
+// The tricky question about the first task could be:
+// "What's the difference between first way (the push() and unshift() solution) and the second way (the spread operators' solution)?", because there is a significant difference.First way mutates the original array, but does not change the reference to it.The second way creates a new array and re - assign an original array, so the new reference is created.
+// In this particular example it doesn't matter since you're using`var`, but if you'd use `const` instead, then the second way would throw an error and the first would be the right one.
+
+// ages = [...ages, "end"];
+// ages = ["start", ...ages, "end"];
+// console.log(ages);
+
+// function secretVariable() {
+//   var private = "super secret code";
+//   return function() {
+//     return private;
+//   };
+// }
+
+// var getPrivateVariable = secretVariable();
+
+// console.log(getPrivateVariable());
+
+// let i = Number.MIN_VALUE;
+
+// console.log(i * i);
+// console.log(i + 1);
+// console.log(i - 1);
+// console.log(i / i);
+
+// let i = ?;
+
+// console.log( i * i );
+// console.log( i / i );
+
+// let x = [1, 2, 3] + [4, 5, 6];
+// let x = [...[1, 2, 3], ...[3, 4, 5]];
+// let x = String([...[1, 2, 3], ...[4, 5, 6]]);
+
+// console.log(x);
+
+// max safe int
+// console.log(Number.Max_SAFE_INTEGER);
+// console.log(555555555555555555);
+
+// iife
+// (function() {
+//   let a = (b = 100);
+// })();
+
+// console.log(b);
+// console.log(a);
+
+// (function() {
+//   let a = 100;
+//   let b = a;
+//   console.log(b);
+//   console.log(a);
+// })();
+
+// console.log(NaN === NaN);
+
+// this does not work ???????
+// var uglyArray = [[1, (2)[(3, [5])]], 4];
+
+// function flatten(items) {
+//   const flat = [];
+
+//   items.forEach(item => {
+//     if (Array.isArray(item)) {
+//       flat.push(...flatten(item));
+//     } else {
+//       flat.push(item);
+//     }
+//   });
+//   return flat;
+// }
+
+// flatten(uglyArray);
+
+// console.log(flatten(uglyArray));
+
+// let x = function() {
+//   console.log("I am called from inside a function");
+// };
+
+// let y = function(callback) {
+//   console.log("do something");
+//   callback();
+// };
+
+// y(x);
+
+// let calc = function(num1, num2, calcType) {
+//   if (calcType === "add") {
+//     return num1 + num2;
+//   } else if (calcType === "multiply") {
+//     return num1 * num2;
+//   }
+// };
+
+// console.log(calc(2, 3, "add"));
+
+let doWhatEver = function(a, b) {
+  console.log(`What are you trying to do with ${a} and ${b}`);
+};
+
+let add = function(a, b) {
+  return a + b;
+};
+
+let multiply = function(a, b) {
+  return a * b;
+};
+
+let calc = function(num1, num2, callback) {
+  if (typeof callback === "function") {
+    return callback(num1, num2);
+  } else {
+    return "you did something wrong";
+  }
+};
+
+console.log(calc(2, 3, multiply));
+
+var myArr = [
+  {
+    num: 5,
+    str: "apple"
+  },
+  {
+    num: 7,
+    str: "cabbage"
+  },
+  {
+    num: 1,
+    str: "ban"
+  }
+];
+
+myArr.sort((val1, val2) => {
+  if (val1.str > val2.str) {
+    return -1;
+  } else {
+    return 1;
+  }
+});
+
+console.log(myArr);
