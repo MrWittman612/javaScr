@@ -354,3 +354,11 @@ function dateFormat(date) {
 
 console.log(dateFormat(new Date()));
 console.log(new Date());
+
+// The virtual field setup would look like this:
+
+// projectSchema
+//   .virtual( 'created.formatted' )
+//   .get( function () {
+//     return dateFormat( this.created )
+//   } );
