@@ -329,3 +329,28 @@ myArr.sort((val1, val2) => {
 });
 
 console.log(myArr);
+
+// // event loop
+
+// // L1
+// console.log("Synchronous 1");
+
+// // L2
+// setTimeout(_ => console.log("Timeout 2"), 0);
+
+// // L3
+// Promise.resolve().then(_ => console.log("Promise"));
+
+// // l4
+// console.log("Synchronous 4");
+
+function dateFormat(date) {
+  const month = date.getMonth();
+  const day = date.getDate();
+  const monthString = month >= 10 ? month : `0${month}`;
+  const dayString = day >= 10 ? day : `0${day}`;
+  return `${date.getFullYear()}-${monthString}-${dayString}`;
+}
+
+console.log(dateFormat(new Date()));
+console.log(new Date());
