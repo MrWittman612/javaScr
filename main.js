@@ -363,11 +363,10 @@ console.log(new Date());
 //     return dateFormat( this.created )
 //   } );
 
-
 var array1 = [5, 12, 8, 130, 44];
 
-var found = array1.find(function(element) {
-  return element > 10;
+var found = array1.findIndex(function(element) {
+  return element > 40 && element < 100;
 });
 
 console.log(found);
