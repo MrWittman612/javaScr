@@ -370,3 +370,90 @@ var found = array1.findIndex(function(element) {
 });
 
 console.log(found);
+
+// Challenge 1: reverse string
+// return a string in reverse
+//ex. reverseString('hello') === ("olleh")
+// const str = "hello";
+function reverseString(str) {
+  // return "Let's Start";
+  // const strArr = str.split("");
+  // strArr.reverse();
+
+  // console.log(strArr);
+  // return strArr.join("");
+
+  // return str
+  //   .split("")
+  //   .reverse()
+  //   .join("");
+
+  /////////////////////////
+  //decrementing for loop
+
+  // let revString = "";
+
+  // for (let i = str.length - 1; i >= 0; i--) {
+  //   revString = revString + str[i];
+  // }
+  // return revString;
+
+  // for (let i = 0; i <= str.length - 1; i++) {
+  //   revString = str[i] + revString;
+  // }
+  // for (let char of str) {
+  //   revString = char + revString;
+  // }
+  // str.split("").forEach(function(char) {
+  //   revString = char + revString;
+  // });
+  // return revString;
+
+  return str.split("").reduce(function(revString, char) {
+    return char + revString;
+  }, "");
+}
+
+console.log(reverseString("hello"));
+
+// Challenge 2: Validate a palindrome
+// return true if palindrome and false if not
+// ex. isPalindrome('racecar')
+
+function isPalindrome(str) {
+  const revString = str
+    .split("")
+    .reverse()
+    .join("");
+  return revString === str;
+}
+
+// Challenge 3: Reverse Integer
+// Return an Integer in reverse
+// ex. reverseInt(521) === 125
+
+function reverseInt(int) {
+  const revString = int
+    .toString()
+    .split("")
+    .reverse()
+    .join("");
+  return parseInt(revString) * Math.sign(int);
+}
+
+// Challenge 4: Capitalize Letters
+// Return a string with the first letter of every word capitalized
+// ex. capitalizedLetters('i love javascript') === "I Love Javascript"
+
+function capitalizeLetters(str) {
+  const strArr = str.toLowerCase().split(" ");
+  for (let i = 0; i < strArr.length; i++) {
+    strArr[i] =
+      strArr[i].substring(0, 1).toUpperCase() + strArr[i].substring(1);
+  }
+  return strArr.join(" ");
+}
+
+const output2 = capitalizeLetters("i love javascript");
+const output = reverseInt(521);
+console.log(output, output2);
