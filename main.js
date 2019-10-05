@@ -446,14 +446,311 @@ function reverseInt(int) {
 // ex. capitalizedLetters('i love javascript') === "I Love Javascript"
 
 function capitalizeLetters(str) {
-  const strArr = str.toLowerCase().split(" ");
-  for (let i = 0; i < strArr.length; i++) {
-    strArr[i] =
-      strArr[i].substring(0, 1).toUpperCase() + strArr[i].substring(1);
-  }
-  return strArr.join(" ");
+  // const strArr = str.toLowerCase().split(" ");
+  // for (let i = 0; i < strArr.length; i++) {
+  //   strArr[i] =
+  //     strArr[i].substring(0, 1).toUpperCase() + strArr[i].substring(1);
+  // }
+  // return strArr.join(" ");
+
+  ///////////
+
+  // return str
+  //   .toLowerCase()
+  //   .split(" ")
+  //   .map(word => word[0].toUpperCase() + word.substr(1))
+  //   .join(" ");
+
+  ////////////////////
+  return str.replace(/\b[a-z]/gi, char => char.toUpperCase());
 }
 
+// Challenge 5: max characters
+// Return the character that is the most common in a string
+// ex. maxCharacter('javascript') === 'a'
+
+function maxCharacter(str) {
+  const charMap = {};
+  let maxNum = 0;
+  let maxChar = "";
+
+  str.split("").forEach(function(char) {
+    if (charMap[char]) {
+      charMap[char]++;
+    } else {
+      charMap[char] = 1;
+    }
+    // console.log(charMap);
+  });
+  for (let char in charMap) {
+    if (charMap[char] > maxNum) {
+      maxNum = charMap[char];
+      maxChar = char;
+    }
+  }
+  return maxChar;
+}
+
+// Challenge 6: FizzBuzz
+// Write a program that prints all the numbers from 1 to 100, For multiples of 3, instead of he number, print 'fizz', for multiples of 5 print 'Buzz', For multiples of both 3 and 5, print 'FizBuzz'.
+
+function fizzBuzz() {
+  for (let i = 1; i <= 100; i++) {
+    // console.log(i);
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("BuzzFizz");
+    } else if (i % 3 === 0) {
+      console.log("Fizz");
+    } else if (i % 5 === 0) {
+      console.log("Buzz");
+    } else {
+      console.log(i);
+    }
+  }
+}
+
+const output4 = fizzBuzz();
+const output3 = maxCharacter("javascript");
 const output2 = capitalizeLetters("i love javascript");
 const output = reverseInt(521);
-console.log(output, output2);
+console.log(output, output2, output3);
+console.log(output4);
+
+// Session 2: JavaScript Cardio
+
+// Challenge 1: Longest Word
+//Return the longest word of a string
+// if more than on longest word, put into an array
+// ex. longestWord('Hello, my name is Chad') === 'hello'
+// ex. longestWord('Hello there, my name is Chad') === ['hello','there']
+const sen = {};
+function longestWord(sen) {
+  // return "Lets Start!";
+  const wordArr = sen.toLowerCase().match(/[a-z0-9]+/g);
+  const sorted = wordArr.sort((a, b) => b.length - a.length);
+  console.log("sorted :", sorted);
+  const longestWordArr = sorted.filter(
+    word => word.length === sorted[0].length
+  );
+  // console.log("longestWordArr", longestWordArr);
+  if (longestWordArr.length === 1) {
+    return longestWordArr[0];
+  } else {
+    return longestWordArr;
+  }
+}
+
+// Challenge 2: Array Chunking
+// Split an array into chunked array of a specific length
+// ex. chunkArray([1,2,3,4,5,6,7],3) === [[1,2,3],[4,5,6],[7]]
+// ex. chunkArray([1,2,3,4,5,6,7],2) === [[1,2],[3,4],[5,6],[7]]
+
+function chunkArray(arr, len) {
+  // const chunkedArr = [];
+  // let i = 0;
+
+  // while (i < arr.length) {
+  //   chunkedArr.push(arr.slice(i, i + len));
+  //   i += len;
+  // }
+  // return chunkedArr;
+
+  const chunkedArr = [];
+  arr.forEach(function(val) {
+    const last = chunkedArr[chunkedArr.length - 1];
+    if (!last || last.length === len) {
+      chunkedArr.push([val]);
+    } else {
+      last.push(val);
+    }
+  });
+  return chunkedArr;
+}
+
+// Challenge 3: Flatten Array
+// Take an array of arrays and flatten to a single array
+// ex. [[1,2],[3,4],[5,6],[7]] = [1,2,3,4,5,6,7]
+
+function flattenArray(arrays) {
+  // return arrays;
+  // return arrays.reduce((a, b) => a.concat(b));
+  // return [].concat.apply( [], arrays );
+  return [].concat(...arrays);
+}
+
+// Challenge 4: Anagram
+// Return true if anagram and false if not
+//ex. 'elbow' === 'below'
+// ex. 'Dormitory' === 'dirty room##'
+
+function isAnagram(str1, str2) {
+  return formatStr(str1) === formatStr(str2);
+}
+
+function formatStr(str) {
+  return str
+    .replace(/[^\w]/g, "")
+    .toLowerCase()
+    .split("")
+    .sort()
+    .join("");
+}
+
+// Challenge 5: Letter Changes
+// Change every letter of a string to the one that fallows it and capitalize the vowels
+// Z should turn to A
+// ex. 'hello there' === 'Ifmmp UIfsf'
+
+function letterChange(str) {
+  let newStr = str.toLowerCase().replace(/[a-z]/gi, function(char) {
+    if (char === "z" || char === "2") {
+      return "a";
+    } else {
+      return String.fromCharCode(char.charCodeAt() + 1);
+    }
+  });
+  newStr = newStr.replace(/a|e|i|o|u/gi, vowel => vowel.toUpperCase());
+  return newStr;
+}
+
+const getFlattenArray = flattenArray([[1, 2], [3, 4], [5, 6], [7]]);
+const getLongestWord = longestWord("Hello there, my name is Chad");
+const getChunkArray = chunkArray([1, 2, 3, 4, 5, 6, 7], 3);
+// const seeIsAnagram = isAnagram("elbow", "below");
+const seeIsAnagram = isAnagram("Dormitory", "dirty room");
+const doLetterChange = letterChange("Hello there");
+
+console.log("getLongestWord :", getLongestWord);
+console.log("getChunkArray :", getChunkArray);
+console.log("getFlattenArray :", getFlattenArray);
+console.log("seeIsAnagram :", seeIsAnagram);
+console.log("doLetterChange :", doLetterChange);
+
+// Session 3
+
+// Challenge 1: Add all Numbers
+// Return a sum of all parameters entered regardless of the amount of numbers of the Array
+// ex. addAll(2,3,4,5,6,7) === 20
+
+// function addAll() {
+//   var args = Array.prototype.slice.call(arguments);
+//   var total = 0;
+//   for (i = 0; i < args.length; i++) {
+//     total += args[i];
+//   }
+//   return total;
+// }
+
+function addAll(...numbers) {
+  // let total = 0;
+  // numbers.forEach(num => (total += num));
+  // return total;
+  return numbers.reduce((acc, cur) => acc + cur);
+}
+
+console.log("addAll :", addAll(2, 5, 6, 7));
+
+// Challenge 2: Sum of all primes
+// PAss in a number to loop up to and add all of the prime numbers.
+// sx. sumAllPrimes(10) == 17
+
+function sumAllPrimes(num) {
+  let total = 0;
+  function checkForPrime(i) {
+    for (let j = 2; j < i; j++) {
+      if (i % j === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+  for (let i = 0; i <= num; i++) {
+    if (checkForPrime(i)) {
+      total += i;
+    }
+  }
+  return total;
+}
+
+console.log("sumAllPrimes", sumAllPrimes(10));
+
+//Challenge 3: Seek & Destroy
+// Remove from the Array whatever is in the following arguments. Return the leftover numbers is the array
+// ex. seekAndDestroy([2,3,4,6,6, 'hello'], 2,6) == [3,4, 'hello']
+
+// function seekAndDestroy(arr) {
+//   const args = Array.from(arguments);
+
+//   function filterArr(arr) {
+//     return args.indexOf(arr) === -1;
+//   }
+
+//   return arr.filter(filterArr);
+// }
+
+function seekAndDestroy(arr, ...rest) {
+  return arr.filter(val => !rest.includes(val));
+}
+
+console.log("seekAndDestroy", seekAndDestroy([2, 3, 4, 6, 6, "hello"], 2, 6));
+
+// Challenge 4: Sort by Height
+// Some people are standing in a row in a park. There are threes between them which cannot be moved. Your task is to rearrange the people
+// ex.
+// a= [-1,150,190,170,-1,-1,160,180]
+// sortByHeight(a) == [-1, 150, 160, 170, -1, -1, 180, 190]
+
+function sortByHeight(a) {
+  const arr1 = [];
+  const arr2 = [];
+  a.forEach((val, i) => {
+    if (val === -1) {
+      arr1.push(i);
+    } else {
+      arr2.push(val);
+    }
+  });
+  const sortArr = arr2.sort((a, b) => a - b);
+
+  arr1.forEach((val, i) => sortArr.splice(arr1[i], 0, -1));
+
+  return sortArr;
+}
+
+const a = [-1, 150, 190, 170, -1, -1, 160, 180];
+console.log("sortByHeight", sortByHeight(a));
+// Challenge 5: Missing Letter
+// find the missing letter in the passed letter range and return it. If all letters are present, return undefined
+//ex.
+// missingLetters('abce') === d
+// missingLetters('abcdefghjklmno') === i
+// missingLetters('abcdefghijklmnopqrstuvwxyz') === undefined
+
+function missingLetters(str) {
+  let compare = str.charCodeAt(0);
+  let missing;
+  str.split("").map((char, i) => {
+    if (str.charCodeAt(i) == compare) {
+      ++compare;
+    } else {
+      missing = String.fromCharCode(compare);
+    }
+  });
+  return missing;
+}
+
+console.log("Missing Letter :", missingLetters("abce"));
+
+// Challenge 6: Even & Odd Sums
+// Take an array and return an array of the sum of the even and odd numbers
+// ex.
+// evenOddSums([50,60,60,45,71]) === [170,116]
+
+function evenOddSums(arr) {
+  let evenSum = 0;
+  let oddSum = 0;
+  arr.forEach(num => (num % 2 === 0 ? (evenSum += num) : (oddSum += num)));
+  return [evenSum, oddSum];
+}
+
+console.log("Even 7 Odd Sums :", evenOddSums([50, 60, 60, 45, 71]));
